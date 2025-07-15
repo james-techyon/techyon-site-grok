@@ -4,245 +4,216 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Techyon: Efficiency Engineering for the AI Era</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Global Styles */
+        /* Global Styles - Enhanced for Engagement */
+        * { box-sizing: border-box; }
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
             color: #001F3F;
             background-color: #FFFFFF;
             line-height: 1.6;
+            overflow-x: hidden;
         }
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
+        section { padding: 80px 20px; }
+        h1, h2, h3 { margin: 0; }
         button {
             cursor: pointer;
             border: none;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
-        button:hover {
-            transform: scale(1.05);
-        }
-
-        /* Color Palette */
+        button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 168, 150, 0.3); }
         .primary { color: #001F3F; }
         .secondary { background-color: #00A896; color: #FFFFFF; }
         .neutral { background-color: #F0F4F8; }
+        .container { max-width: 1200px; margin: 0 auto; }
 
-        /* Header */
+        /* Header - Sticky, Minimal */
         header {
-            position: fixed;
+            position: sticky;
             top: 0;
             width: 100%;
-            height: 60px;
-            background-color: #FFFFFF;
+            background: #FFFFFF;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 100;
+            padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            z-index: 10;
         }
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
+        .logo { font-size: 24px; font-weight: 700; }
         nav ul {
             list-style: none;
             display: flex;
-            gap: 20px;
-        }
-        nav ul li a {
-            font-weight: 500;
-        }
-        .cta-header {
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-        /* Mobile Hamburger */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-        }
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background-color: #001F3F;
-        }
-        @media (max-width: 768px) {
-            nav ul {
-                display: none;
-            }
-            .hamburger {
-                display: flex;
-            }
-            /* Show nav on toggle - JS would handle this */
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-            background: linear-gradient(to bottom, #FFFFFF, #F0F4F8);
-        }
-        .hero h1 {
-            font-size: 48px;
+            gap: 24px;
             margin: 0;
         }
-        .hero p {
-            font-size: 24px;
-            margin: 10px 0 20px;
-        }
-        .hero button {
-            padding: 15px 30px;
-            font-size: 18px;
-            border-radius: 5px;
-        }
+        nav a { font-weight: 500; transition: color 0.3s; }
+        nav a:hover { color: #00A896; }
+        .cta-header { font-size: 16px; }
+
+        /* Mobile Nav */
+        .hamburger { display: none; flex-direction: column; gap: 4px; cursor: pointer; }
+        .hamburger span { width: 24px; height: 2px; background: #001F3F; transition: all 0.3s; }
         @media (max-width: 768px) {
-            .hero h1 { font-size: 32px; }
-            .hero p { font-size: 18px; }
+            nav ul { display: none; flex-direction: column; position: absolute; top: 60px; left: 0; width: 100%; background: #FFFFFF; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+            nav ul.show { display: flex; }
+            .hamburger { display: flex; }
         }
 
-        /* Value Sections */
-        .value-section {
-            padding: 60px 20px;
+        /* Hero - Engaging with Gradient and Subtle Animation */
+        .hero {
+            background: linear-gradient(135deg, #F0F4F8, #FFFFFF);
             text-align: center;
+            padding: 120px 20px;
+            position: relative;
+            overflow: hidden;
         }
-        .value-section h2 {
-            font-size: 32px;
-            margin-bottom: 20px;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(0,168,150,0.1) 0%, transparent 70%);
+            animation: pulse 10s infinite;
         }
-        .value-section p {
-            max-width: 800px;
-            margin: 0 auto 30px;
-        }
-        .value-section button {
-            padding: 12px 24px;
-            font-size: 16px;
-            border-radius: 5px;
-        }
-        @media (max-width: 768px) {
-            .value-section h2 { font-size: 24px; }
-        }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        .hero h1 { font-size: 48px; margin-bottom: 16px; }
+        .hero p { font-size: 24px; margin-bottom: 32px; opacity: 0.9; }
+        .hero button { font-size: 18px; padding: 16px 32px; }
+        @media (max-width: 768px) { .hero h1 { font-size: 32px; } .hero p { font-size: 18px; } }
 
-        /* ROI Calculator Widget (Simple Example) */
+        /* Value Sections - Cards with Icons and Hover Effects */
+        .values { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+        .value-card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            padding: 32px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .value-card:hover { transform: translateY(-8px); }
+        .value-card i { font-size: 48px; color: #00A896; margin-bottom: 16px; }
+        .value-card h2 { font-size: 28px; margin-bottom: 16px; }
+        .value-card p { margin-bottom: 24px; }
+        .value-card ul { list-style: none; padding: 0; text-align: left; max-width: 80%; margin: 0 auto 24px; }
+        .value-card li { margin-bottom: 8px; position: relative; padding-left: 20px; }
+        .value-card li::before { content: '\f058'; font-family: 'Font Awesome 6 Free'; color: #00A896; position: absolute; left: 0; }
+
+        /* ROI Calculator - Interactive */
+        .roi-section { text-align: center; }
         .roi-calculator {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #F0F4F8;
-            border-radius: 10px;
+            max-width: 500px;
+            margin: 32px auto;
+            padding: 24px;
+            background: #F0F4F8;
+            border-radius: 12px;
         }
         .roi-calculator input {
             width: 100%;
-            padding: 10px;
-            margin: 10px 0;
+            padding: 12px;
+            margin: 12px 0;
             border: 1px solid #001F3F;
-            border-radius: 5px;
+            border-radius: 8px;
+            font-size: 16px;
         }
-        .roi-result {
-            margin-top: 20px;
-            font-weight: bold;
+        .roi-result { font-size: 20px; font-weight: 600; color: #00A896; margin-top: 16px; }
+
+        /* Services - Accordion for Depth without Clutter */
+        .services { background: #F0F4F8; }
+        .accordion {
+            max-width: 800px;
+            margin: 0 auto;
         }
+        .accordion-item {
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 16px;
+        }
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 16px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 20px;
+        }
+        .accordion-content {
+            display: none;
+            padding: 0 16px 16px;
+        }
+        .accordion-content p { margin-bottom: 16px; }
+        .accordion-content form { max-width: 100%; }
+        .accordion-content input, .accordion-content select, .accordion-content textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #001F3F;
+            border-radius: 8px;
+        }
+
+        /* Resources - Grid with Teasers */
+        .resources { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
+        .resource-card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .resource-card h3 { font-size: 22px; margin-bottom: 12px; }
+        .resource-card p { margin-bottom: 16px; }
+
+        /* Contact */
+        .contact { text-align: center; background: linear-gradient(135deg, #00A896, #001F3F); color: #FFFFFF; }
+        .contact h2 { font-size: 36px; margin-bottom: 24px; }
+        .contact form { max-width: 600px; margin: 0 auto; }
+        .contact input, .contact select, .contact textarea { background: rgba(255,255,255,0.9); color: #001F3F; }
 
         /* Footer */
         footer {
-            padding: 20px;
+            padding: 32px 20px;
             text-align: center;
-            background-color: #F0F4F8;
+            background: #001F3F;
+            color: #FFFFFF;
         }
-        footer form {
-            display: inline-block;
-            margin-top: 10px;
-        }
-        footer input {
-            padding: 10px;
-            border: 1px solid #001F3F;
-            border-radius: 5px 0 0 5px;
-        }
-        footer button {
-            padding: 10px 20px;
-            border-radius: 0 5px 5px 0;
-        }
+        footer a { color: #00A896; margin: 0 12px; }
 
-        /* Forms (General) */
-        .intake-form {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .intake-form input, .intake-form select, .intake-form textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #001F3F;
-            border-radius: 5px;
-        }
-        .intake-form button {
-            width: 100%;
-            padding: 15px;
-            font-size: 18px;
-        }
-
-        /* Services Page (Tabbed/Accordion) */
-        .services {
-            padding: 80px 20px;
-        }
-        .service-card {
-            margin: 20px auto;
-            max-width: 800px;
-            padding: 20px;
-            background-color: #F0F4F8;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-        .service-card h3 {
-            font-size: 24px;
-        }
-        .service-details {
+        /* Modals */
+        .modal {
             display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
         }
-        /* JS would toggle display */
-
-        /* Resources Page */
-        .resources {
-            padding: 80px 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+        .modal-content {
+            background: #FFFFFF;
+            padding: 32px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
         }
-        .resource-card {
-            padding: 20px;
-            background-color: #F0F4F8;
-            border-radius: 10px;
-        }
-
-        /* Contact Page */
-        .contact {
-            padding: 80px 20px;
-            text-align: center;
-        }
+        .close { float: right; cursor: pointer; font-size: 24px; }
 
         /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .fade-in {
-            animation: fadeIn 0.5s ease-in;
-        }
+        .fade-in { opacity: 0; animation: fadeIn 1s forwards; }
+        @keyframes fadeIn { to { opacity: 1; } }
 
-        /* Font Import */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+        @media (max-width: 768px) {
+            section { padding: 60px 15px; }
+            .hero { padding: 80px 15px; }
+            .values { grid-template-columns: 1fr; }
+            .resources { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -257,140 +228,238 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
-        <button class="cta-header secondary">Schedule Demo</button>
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
+        <button class="cta-header secondary" onclick="showModal('demo')">Schedule Demo</button>
+        <div class="hamburger" onclick="toggleNav()">
+            <span></span><span></span><span></span>
         </div>
     </header>
 
-    <!-- Home Page Content -->
+    <!-- Hero -->
     <section class="hero fade-in">
-        <h1 class="primary">Redefine Work with AI Efficiency</h1>
-        <p>Automate, Insight, Grow—Seamlessly.</p>
-        <button class="secondary" onclick="showForm('roi-audit')">Get Your Free ROI Audit</button>
-    </section>
-
-    <section class="value-section">
-        <h2>Automated Document Mastery</h2>
-        <p>Reclaim hours with AI that extracts, classifies, and analyzes documents accurately.</p>
-        <button class="secondary" onclick="showForm('demo-request')">Request Demo</button>
-    </section>
-
-    <section class="value-section neutral">
-        <h2>Intelligent Virtual Assistants</h2>
-        <p>Custom AI sidekicks boosting productivity without training.</p>
-        <button class="secondary" onclick="showForm('consultation')">Schedule Consultation</button>
-    </section>
-
-    <section class="value-section">
-        <h2>ROI Predictive Insights</h2>
-        <p>Turn data into measurable growth with AI-driven forecasts.</p>
-        <div class="roi-calculator">
-            <label>Current Costs ($):</label>
-            <input type="number" id="costs" placeholder="Enter amount">
-            <label>Team Size:</label>
-            <input type="number" id="team" placeholder="Enter number">
-            <button class="secondary" onclick="calculateROI()">Calculate Savings</button>
-            <div class="roi-result" id="result"></div>
+        <div class="container">
+            <h1 class="primary">Redefine Work with AI Efficiency</h1>
+            <p>Harness cutting-edge AI to automate routines, unlock insights, and drive sustainable growth in the AI era.</p>
+            <button class="secondary" onclick="showModal('roi-audit')">Get Free ROI Audit</button>
         </div>
     </section>
 
-    <!-- Services Page (Anchor) -->
+    <!-- Value Sections -->
+    <section id="values" class="container values">
+        <div class="value-card fade-in">
+            <i class="fas fa-file-alt"></i>
+            <h2>Automated Document Mastery</h2>
+            <p>Eliminate manual drudgery with AI that extracts, classifies, and analyzes documents with 99% accuracy, saving teams up to 40% time.</p>
+            <ul>
+                <li>Seamless integration with existing tools</li>
+                <li>Real-time compliance checks</li>
+                <li>Actionable insights from unstructured data</li>
+            </ul>
+            <button class="secondary" onclick="showModal('document-demo')">Request Demo</button>
+        </div>
+        <div class="value-card fade-in" style="animation-delay: 0.2s;">
+            <i class="fas fa-robot"></i>
+            <h2>Intelligent Virtual Assistants</h2>
+            <p>Custom-built AI companions that anticipate needs, automate tasks, and boost productivity by 50% without any training required.</p>
+            <ul>
+                <li>Tailored to your workflows</li>
+                <li>24/7 availability</li>
+                <li>Scalable as your business grows</li>
+            </ul>
+            <button class="secondary" onclick="showModal('assistant-consult')">Schedule Consultation</button>
+        </div>
+        <div class="value-card fade-in" style="animation-delay: 0.4s;">
+            <i class="fas fa-chart-line"></i>
+            <h2>ROI Predictive Insights</h2>
+            <p>Leverage AI to forecast trends, optimize decisions, and achieve 20-35% ROI uplift through data-driven strategies.</p>
+            <ul>
+                <li>Predictive analytics tied to revenue</li>
+                <li>Custom dashboards</li>
+                <li>Continuous improvement loops</li>
+            </ul>
+            <button class="secondary" onclick="showModal('insights-audit')">Explore Insights</button>
+        </div>
+    </section>
+
+    <!-- ROI Calculator Section -->
+    <section class="roi-section neutral">
+        <div class="container">
+            <h2 class="primary">Calculate Your Potential ROI</h2>
+            <p>See how Techyon can transform your efficiency—input your details for instant estimates.</p>
+            <div class="roi-calculator">
+                <label>Annual Operational Costs ($):</label>
+                <input type="number" id="costs" placeholder="e.g., 100000">
+                <label>Team Size:</label>
+                <input type="number" id="team" placeholder="e.g., 50">
+                <button class="secondary" onclick="calculateROI()">Calculate</button>
+                <div class="roi-result" id="result">Estimated Savings: $0</div>
+            </div>
+            <p>Impressed? <a href="#" onclick="showModal('roi-form')">Get a Personalized Audit</a></p>
+        </div>
+    </section>
+
+    <!-- Services -->
     <section id="services" class="services">
-        <h2>Our Services</h2>
-        <div class="service-card">
-            <h3>Automated Document Retrieval</h3>
-            <div class="service-details">
-                <p>Details here...</p>
-                <form class="intake-form">
-                    <input type="text" placeholder="Your Name">
-                    <input type="email" placeholder="Your Email">
-                    <button class="secondary">Submit</button>
-                </form>
+        <div class="container">
+            <h2 class="primary" style="text-align: center; margin-bottom: 32px;">Our Services in Depth</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">Automated Document Retrieval <i class="fas fa-chevron-down"></i></div>
+                    <div class="accordion-content">
+                        <p>Our AI-powered system handles document extraction, classification, and analysis, reducing errors and speeding up processes for industries like finance and legal.</p>
+                        <ul>
+                            <li>Supports PDF, images, and more</li>
+                            <li>99% accuracy with ML models</li>
+                            <li>Integrates with CRM/ERP</li>
+                        </ul>
+                        <form onsubmit="alert('Form Submitted!'); return false;">
+                            <input type="email" placeholder="Email for Demo">
+                            <button class="secondary">Request Access</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">AI Virtual Assistants <i class="fas fa-chevron-down"></i></div>
+                    <div class="accordion-content">
+                        <p>Tailored assistants that learn from your team, automating routine tasks and providing instant support.</p>
+                        <ul>
+                            <li>Natural language processing</li>
+                            <li>Customizable commands</li>
+                            <li>Secure data handling</li>
+                        </ul>
+                        <form onsubmit="alert('Form Submitted!'); return false;">
+                            <input type="email" placeholder="Email for Consultation">
+                            <button class="secondary">Book Now</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">Predictive Insights <i class="fas fa-chevron-down"></i></div>
+                    <div class="accordion-content">
+                        <p>Advanced AI generates ROI-focused predictions, helping you make data-backed decisions for growth.</p>
+                        <ul>
+                            <li>Forecasting with 95% accuracy</li>
+                            <li>Visual reports</li>
+                            <li>API integrations</li>
+                        </ul>
+                        <form onsubmit="alert('Form Submitted!'); return false;">
+                            <input type="email" placeholder="Email for Insights">
+                            <button class="secondary">Get Started</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- More cards... -->
     </section>
 
-    <!-- Resources Page (Anchor) -->
-    <section id="resources" class="resources">
-        <div class="resource-card">
-            <h3>5 Ways AI Cuts Document Time</h3>
-            <p>Teaser...</p>
-            <button class="secondary" onclick="showForm('download-guide')">Download Guide</button>
+    <!-- Resources -->
+    <section id="resources" class="container">
+        <h2 class="primary" style="text-align: center; margin-bottom: 32px;">Resources & Insights</h2>
+        <div class="resources">
+            <div class="resource-card">
+                <h3>5 Ways AI Cuts Document Processing Time</h3>
+                <p>Discover proven strategies to streamline your workflows and boost efficiency.</p>
+                <button class="secondary" onclick="showModal('download-guide')">Download Guide</button>
+            </div>
+            <div class="resource-card">
+                <h3>The Future of Virtual Assistants in Business</h3>
+                <p>Explore how AI companions are revolutionizing productivity.</p>
+                <button class="secondary" onclick="showModal('download-whitepaper')">Get Whitepaper</button>
+            </div>
+            <div class="resource-card">
+                <h3>Maximizing ROI with Predictive AI</h3>
+                <p>Case studies and tips for turning data into dollars.</p>
+                <button class="secondary" onclick="showModal('download-case')">View Case Studies</button>
+            </div>
         </div>
-        <!-- More cards... -->
     </section>
 
-    <!-- Contact Page (Anchor) -->
+    <!-- Contact -->
     <section id="contact" class="contact">
-        <h2>Contact Us</h2>
-        <form class="intake-form">
-            <input type="text" placeholder="Name">
-            <input type="email" placeholder="Email">
-            <select>
-                <option>Service Interest</option>
-                <option>Automated Documents</option>
-                <option>Virtual Assistants</option>
-                <option>Predictive Insights</option>
-            </select>
-            <textarea placeholder="Message"></textarea>
-            <button class="secondary">Send & Schedule Call</button>
-        </form>
+        <div class="container">
+            <h2>Ready to Engineer Your Efficiency?</h2>
+            <p>Contact us to start your transformation today.</p>
+            <form onsubmit="alert('Message Sent!'); return false;">
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email" required>
+                <select required>
+                    <option value="">Service Interest</option>
+                    <option>Automated Documents</option>
+                    <option>Virtual Assistants</option>
+                    <option>Predictive Insights</option>
+                </select>
+                <textarea placeholder="Message" required></textarea>
+                <button class="secondary">Send & Schedule Call</button>
+            </form>
+        </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="logo">Techyon © 2025</div>
-        <p>Ready to Engineer Efficiency? Contact Us</p>
-        <form>
-            <input type="email" placeholder="Your Email">
-            <button class="secondary">Submit</button>
-        </form>
+        <div>Techyon © 2025 | Efficiency Engineering for the AI Era</div>
+        <div>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p><a href="#" onclick="showModal('newsletter')">Subscribe to Newsletter</a></p>
     </footer>
 
-    <!-- Modal Form (Hidden, JS shows) -->
-    <div id="modal-form" style="display:none; position:fixed; top:20%; left:50%; transform:translate(-50%,0); background:#FFF; padding:20px; box-shadow:0 0 10px rgba(0,0,0,0.5); z-index:20;">
-        <h3 id="form-title"></h3>
-        <form class="intake-form">
-            <input type="text" placeholder="Name">
-            <input type="email" placeholder="Email">
-            <button class="secondary">Submit</button>
-        </form>
-        <button onclick="closeForm()">Close</button>
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3 id="modal-title">Form Title</h3>
+            <form onsubmit="alert('Submitted!'); closeModal(); return false;">
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email" required>
+                <textarea placeholder="Tell us more..." required></textarea>
+                <button class="secondary">Submit</button>
+            </form>
+        </div>
     </div>
 
     <script>
-        // Simple JS for Interactivity
-        function showForm(type) {
-            document.getElementById('modal-form').style.display = 'block';
-            document.getElementById('form-title').innerText = type.replace('-', ' ').toUpperCase();
-        }
-        function closeForm() {
-            document.getElementById('modal-form').style.display = 'none';
+        // Nav Toggle
+        function toggleNav() {
+            document.querySelector('nav ul').classList.toggle('show');
         }
 
+        // Accordion
+        function toggleAccordion(el) {
+            const content = el.nextElementSibling;
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // ROI Calc
         function calculateROI() {
             const costs = parseFloat(document.getElementById('costs').value) || 0;
             const team = parseInt(document.getElementById('team').value) || 0;
-            const savings = (costs * 0.3) + (team * 1000); // Dummy calc
-            document.getElementById('result').innerText = `Estimated Savings: $${savings.toFixed(2)}`;
+            const savings = (costs * 0.25) + (team * 2000); // Enhanced dummy formula
+            document.getElementById('result').innerText = `Estimated Annual Savings: $${savings.toLocaleString()}`;
         }
 
-        // Accordion Toggle (Example)
-        document.querySelectorAll('.service-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const details = card.querySelector('.service-details');
-                details.style.display = details.style.display === 'block' ? 'none' : 'block';
-            });
-        });
-
-        // Hamburger Menu (Basic)
-        document.querySelector('.hamburger').addEventListener('click', () => {
-            document.querySelector('nav ul').style.display = document.querySelector('nav ul').style.display === 'flex' ? 'none' : 'flex';
-        });
+        // Modal
+        const modal = document.getElementById('modal');
+        const title = document.getElementById('modal-title');
+        function showModal(type) {
+            let formTitle = '';
+            switch(type) {
+                case 'demo': formTitle = 'Schedule Demo'; break;
+                case 'roi-audit': formTitle = 'Free ROI Audit'; break;
+                case 'document-demo': formTitle = 'Document Demo Request'; break;
+                case 'assistant-consult': formTitle = 'Virtual Assistant Consultation'; break;
+                case 'insights-audit': formTitle = 'Predictive Insights Audit'; break;
+                case 'download-guide': formTitle = 'Download Guide'; break;
+                case 'download-whitepaper': formTitle = 'Get Whitepaper'; break;
+                case 'download-case': formTitle = 'View Case Studies'; break;
+                case 'newsletter': formTitle = 'Subscribe to Newsletter'; break;
+                default: formTitle = 'Contact Us';
+            }
+            title.innerText = formTitle;
+            modal.style.display = 'flex';
+        }
+        function closeModal() { modal.style.display = 'none'; }
+        window.onclick = function(event) { if (event.target == modal) closeModal(); }
     </script>
 
 </body>
