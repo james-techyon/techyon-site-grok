@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techyon: Efficiency Engineering for the AI Era</title>
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            color: #001F3F;
+            background-color: #FFFFFF;
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        button {
+            cursor: pointer;
+            border: none;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Color Palette */
+        .primary { color: #001F3F; }
+        .secondary { background-color: #00A896; color: #FFFFFF; }
+        .neutral { background-color: #F0F4F8; }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #FFFFFF;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li a {
+            font-weight: 500;
+        }
+        .cta-header {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        /* Mobile Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: #001F3F;
+        }
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            /* Show nav on toggle - JS would handle this */
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: linear-gradient(to bottom, #FFFFFF, #F0F4F8);
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin: 0;
+        }
+        .hero p {
+            font-size: 24px;
+            margin: 10px 0 20px;
+        }
+        .hero button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .hero p { font-size: 18px; }
+        }
+
+        /* Value Sections */
+        .value-section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .value-section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        .value-section p {
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        .value-section button {
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        @media (max-width: 768px) {
+            .value-section h2 { font-size: 24px; }
+        }
+
+        /* ROI Calculator Widget (Simple Example) */
+        .roi-calculator {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #F0F4F8;
+            border-radius: 10px;
+        }
+        .roi-calculator input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #001F3F;
+            border-radius: 5px;
+        }
+        .roi-result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            padding: 20px;
+            text-align: center;
+            background-color: #F0F4F8;
+        }
+        footer form {
+            display: inline-block;
+            margin-top: 10px;
+        }
+        footer input {
+            padding: 10px;
+            border: 1px solid #001F3F;
+            border-radius: 5px 0 0 5px;
+        }
+        footer button {
+            padding: 10px 20px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        /* Forms (General) */
+        .intake-form {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .intake-form input, .intake-form select, .intake-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #001F3F;
+            border-radius: 5px;
+        }
+        .intake-form button {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+        }
+
+        /* Services Page (Tabbed/Accordion) */
+        .services {
+            padding: 80px 20px;
+        }
+        .service-card {
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #F0F4F8;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .service-card h3 {
+            font-size: 24px;
+        }
+        .service-details {
+            display: none;
+        }
+        /* JS would toggle display */
+
+        /* Resources Page */
+        .resources {
+            padding: 80px 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .resource-card {
+            padding: 20px;
+            background-color: #F0F4F8;
+            border-radius: 10px;
+        }
+
+        /* Contact Page */
+        .contact {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        /* Font Import */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">Techyon</div>
+        <nav>
+            <ul>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="cta-header secondary">Schedule Demo</button>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- Home Page Content -->
+    <section class="hero fade-in">
+        <h1 class="primary">Redefine Work with AI Efficiency</h1>
+        <p>Automate, Insight, Grow—Seamlessly.</p>
+        <button class="secondary" onclick="showForm('roi-audit')">Get Your Free ROI Audit</button>
+    </section>
+
+    <section class="value-section">
+        <h2>Automated Document Mastery</h2>
+        <p>Reclaim hours with AI that extracts, classifies, and analyzes documents accurately.</p>
+        <button class="secondary" onclick="showForm('demo-request')">Request Demo</button>
+    </section>
+
+    <section class="value-section neutral">
+        <h2>Intelligent Virtual Assistants</h2>
+        <p>Custom AI sidekicks boosting productivity without training.</p>
+        <button class="secondary" onclick="showForm('consultation')">Schedule Consultation</button>
+    </section>
+
+    <section class="value-section">
+        <h2>ROI Predictive Insights</h2>
+        <p>Turn data into measurable growth with AI-driven forecasts.</p>
+        <div class="roi-calculator">
+            <label>Current Costs ($):</label>
+            <input type="number" id="costs" placeholder="Enter amount">
+            <label>Team Size:</label>
+            <input type="number" id="team" placeholder="Enter number">
+            <button class="secondary" onclick="calculateROI()">Calculate Savings</button>
+            <div class="roi-result" id="result"></div>
+        </div>
+    </section>
+
+    <!-- Services Page (Anchor) -->
+    <section id="services" class="services">
+        <h2>Our Services</h2>
+        <div class="service-card">
+            <h3>Automated Document Retrieval</h3>
+            <div class="service-details">
+                <p>Details here...</p>
+                <form class="intake-form">
+                    <input type="text" placeholder="Your Name">
+                    <input type="email" placeholder="Your Email">
+                    <button class="secondary">Submit</button>
+                </form>
+            </div>
+        </div>
+        <!-- More cards... -->
+    </section>
+
+    <!-- Resources Page (Anchor) -->
+    <section id="resources" class="resources">
+        <div class="resource-card">
+            <h3>5 Ways AI Cuts Document Time</h3>
+            <p>Teaser...</p>
+            <button class="secondary" onclick="showForm('download-guide')">Download Guide</button>
+        </div>
+        <!-- More cards... -->
+    </section>
+
+    <!-- Contact Page (Anchor) -->
+    <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <form class="intake-form">
+            <input type="text" placeholder="Name">
+            <input type="email" placeholder="Email">
+            <select>
+                <option>Service Interest</option>
+                <option>Automated Documents</option>
+                <option>Virtual Assistants</option>
+                <option>Predictive Insights</option>
+            </select>
+            <textarea placeholder="Message"></textarea>
+            <button class="secondary">Send & Schedule Call</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="logo">Techyon © 2025</div>
+        <p>Ready to Engineer Efficiency? Contact Us</p>
+        <form>
+            <input type="email" placeholder="Your Email">
+            <button class="secondary">Submit</button>
+        </form>
+    </footer>
+
+    <!-- Modal Form (Hidden, JS shows) -->
+    <div id="modal-form" style="display:none; position:fixed; top:20%; left:50%; transform:translate(-50%,0); background:#FFF; padding:20px; box-shadow:0 0 10px rgba(0,0,0,0.5); z-index:20;">
+        <h3 id="form-title"></h3>
+        <form class="intake-form">
+            <input type="text" placeholder="Name">
+            <input type="email" placeholder="Email">
+            <button class="secondary">Submit</button>
+        </form>
+        <button onclick="closeForm()">Close</button>
+    </div>
+
+    <script>
+        // Simple JS for Interactivity
+        function showForm(type) {
+            document.getElementById('modal-form').style.display = 'block';
+            document.getElementById('form-title').innerText = type.replace('-', ' ').toUpperCase();
+        }
+        function closeForm() {
+            document.getElementById('modal-form').style.display = 'none';
+        }
+
+        function calculateROI() {
+            const costs = parseFloat(document.getElementById('costs').value) || 0;
+            const team = parseInt(document.getElementById('team').value) || 0;
+            const savings = (costs * 0.3) + (team * 1000); // Dummy calc
+            document.getElementById('result').innerText = `Estimated Savings: $${savings.toFixed(2)}`;
+        }
+
+        // Accordion Toggle (Example)
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const details = card.querySelector('.service-details');
+                details.style.display = details.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+
+        // Hamburger Menu (Basic)
+        document.querySelector('.hamburger').addEventListener('click', () => {
+            document.querySelector('nav ul').style.display = document.querySelector('nav ul').style.display === 'flex' ? 'none' : 'flex';
+        });
+    </script>
+
+</body>
+</html>
